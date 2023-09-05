@@ -22,9 +22,8 @@ export default function EventDetails() {
     },
   });
 
-  const handleDelete = (id) => {
-    console.log("id to be deleted is ", id);
-    mutate({ id });
+  const handleDelete = () => {
+    mutate({ id: params.id });
   };
 
   let content;
@@ -63,7 +62,7 @@ export default function EventDetails() {
         <header>
           <h1>{data.title}</h1>
           <nav>
-            <button onClick={() => handleDelete(params.id)}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
             <Link to="edit">Edit</Link>
           </nav>
         </header>
