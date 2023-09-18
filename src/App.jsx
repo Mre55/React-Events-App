@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import {
   Navigate,
   RouterProvider,
@@ -7,12 +8,10 @@ import {
 import Events from "./components/Events/Events.jsx";
 import EventDetails from "./components/Events/EventDetails.jsx";
 import NewEvent from "./components/Events/NewEvent.jsx";
-import EditEvent, {
-  loader as editEventLoader,
-  action as editEventAction,
-} from "./components/Events/EditEvent.jsx";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./util/http.js";
+
+const EditEvent = lazy(() => import("./components/Events/EditEvent"));
 
 const router = createBrowserRouter([
   {
@@ -36,9 +35,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/events/:id/edit",
-        element: <EditEvent />,
-        loader: editEventLoader,
-        action: editEventAction,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <EditEvent />
+          </Suspense>
+        ),
+        loader: (meta) =>
+          import("./components/Events/EditEvent").then((module) =>
+            module.loader(meta)
+          ),
+        action: (meta) =>
+          import("./components/Events/EditEvent").then((module) =>
+            module.action(meta)
+          ),
       },
     ],
   },
