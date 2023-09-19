@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "npm i"
   },
   "keywords": [],
   "author": "Maximilian Schwarzmüller (Academind GmbH)",
