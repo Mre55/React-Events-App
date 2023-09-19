@@ -4,7 +4,7 @@ export const queryClient = new QueryClient();
 
 export async function fetchEvents({ signal, searchTerm, max }) {
   console.log(searchTerm);
-  let url = "http://localhost:3000/events";
+  let url = "https://react-events-romp.onrender.com/events";
 
   if (searchTerm && max) {
     url += "?search=" + searchTerm + "&max=" + max;
