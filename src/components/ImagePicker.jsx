@@ -7,10 +7,10 @@ export default function ImagePicker({ images, selectedImage, onSelect }) {
           <li
             key={image.path}
             onClick={() => onSelect(image.path)}
-            className={selectedImage === image.path ? 'selected' : undefined}
+            className={selectedImage === image.path ? "selected" : undefined}
           >
             <img
-              src={`http://localhost:3000/${image.path}`}
+              src={`https://react-events-romp.onrender.com/${image.path}`}
               alt={image.caption}
             />
           </li>
